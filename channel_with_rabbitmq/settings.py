@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'app',
 ]
 
@@ -69,6 +70,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'channel_with_rabbitmq.wsgi.application'
 ASGI_APPLICATION = 'channel_with_rabbitmq.asgi.application'
+
+# Channels configuration
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
